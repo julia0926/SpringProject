@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.DepartmentMapper">
+
+  <select id="findAll" resultMap="departmentWithStudents">
+    select d.*, 
+      s.id studentId, s.studentNumber, s.name studentName, s.year
+    from department d join student s
+      on d.id = s.departmentId
+    order by d.id
+  </select>
+
+  <resultMap id="departmentWithStudents" type="net.skhu.dto.Department">
+    <id property="id" column="id" />
+    <result property="departmentName" column="departmentName" />
+    <collection property="students" ofType="net.skhu.dto.Student">
+      <id property="id" column="studentId" />
+      <result property="studentNumber" column="studentNumber" />
+      <result property="name" column="studentName" />
+      <result property="year" column="year" />
+    </collection>
+  </resultMap>
+
+</mapper>
+
