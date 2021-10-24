@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.StudentMapper">
+	
+	
+  <resultMap id="StudentWithDepartment" type="net.skhu.dto.Student">
+    <id property="id" column="id" />
+    <result property="studentNumber" column="studentNumber" />
+    <result property="name" column="name" />
+    <result property="departmentId" column="departmentId" />
+    <result property="year" column="year" />
+    <association property="department" javaType="net.skhu.dto.Department">
+      <id property="id" column="departmentId" />
+      <result property="departmentName" column="departmentName" />
+    </association>
+	
+  </resultMap>
+
+</mapper>
+
