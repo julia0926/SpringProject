@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.CourseMapper">
+
+<select id="findAll" resultMap="CourseWithProfessor">
+  	SELECT c.*, p.*  
+FROM course c JOIN professor p ON c.professorId = p.id   
+
+  </select>
+
+  <resultMap id="CourseWithProfessor" type="net.skhu.dto.Course">
+    <id property="id" column="id" />
+    <result property="year" column="year" />
+    <result property="semester" column="semester" />
+    <result property="gubun" column="gubun" />
+    <result property="code" column="code" />
+    <result property="bunban" column="bunban" />
+    <result property="title" column="title" />
+    <result property="unit" column="unit" />
+    <result property="professorId" column="professorId" /> 
+   	<result property="sigan" column="sigan" />    
+    <association property="professor" javaType="net.skhu.dto.Professor">
+      <id property="id" column="professorId" />
+      <result property="professorNo" column="professorNo" />
+    <result property="name" column="name" />
+    </association>
+  </resultMap>
+
+</mapper>
+
