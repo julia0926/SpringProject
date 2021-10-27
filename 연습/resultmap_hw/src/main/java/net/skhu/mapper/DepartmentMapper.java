@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import net.skhu.dto.Professor;
+import net.skhu.dto.Department;
 
 @Mapper
-public interface ProfessorMapper {
+public interface DepartmentMapper {
 
-    List<Professor> findAll();
+    List<Department> findAll();
 
 }
 

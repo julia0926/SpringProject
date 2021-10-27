@@ -30,3 +30,4 @@ public interface DepartmentMapper {
     @Delete("DELETE FROM department WHERE id = #{id}")
     void delete(int id);
 }
+
