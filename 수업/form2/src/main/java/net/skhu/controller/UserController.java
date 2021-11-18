@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import net.skhu.dto.User;
 import net.skhu.model.UserRegister;
 import net.skhu.service.DepartmentService;
 import net.skhu.service.UserService;
@@ -38,14 +37,9 @@ public class UserController {
     @PostMapping("register")
     public String register(Model model,
             @Valid UserRegister userRegister, BindingResult bindingResult)
+    		//Valid 어노테이션에 의해서 해당되는 에러 검사 
     {
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("departments", departmentService.findAll());
-            return "user/register";
-        }
-        User user = userService.findByUserid(userRegister.getUserid());
-        if (user != null) {
-            bindingResult.rejectValue("userid", null, "사용자 아이디가 중복됩니다.");
+        if (userService.hasErrors(userRegister, bindingResult)) {
             model.addAttribute("departments", departmentService.findAll());
             return "user/register";
         }
