@@ -40,7 +40,7 @@ public class StudentController {
     public String create(Model model, Student student, Pagination pagination) {
         studentRepository.save(student);
         int lastPage = (int)Math.ceil((double)studentRepository.count() / pagination.getSz());
-        pagination.setPg(lastPage);
+        pagination.setPg(lastPage); //마지막 페이지로 이동한다. 
         return "redirect:list?" + pagination.getQueryString();
     }
 
